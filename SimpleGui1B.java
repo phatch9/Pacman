@@ -2,11 +2,11 @@
 import javax.swing.*;
 import java.awt.event.*;
 
-public class Action implements ActionListener {
+public class SimpleGui1B implements ActionListener {
 	JButton button1,button2;
 
 	public static void main(String[] args) {
-		Action gui = new Action();
+		SimpleGui1B gui = new SimpleGui1B();
 		gui.go();
 	}
 
@@ -20,5 +20,12 @@ public class Action implements ActionListener {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setSize(300, 300);
 		frame.setVisible(true);
+	}
+	
+	public void actionPerformed(ActionEvent event) {
+		if (button1.getText()=="click me")
+		button1.setText("I have been clicked!");
+		else if (button1.getText()== "Ive been clicked!")
+			button1.setText("click me");
 	}
 }
