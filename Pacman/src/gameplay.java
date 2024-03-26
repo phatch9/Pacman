@@ -18,7 +18,7 @@ public class Gameplay extends Canvas implements Runnable,KeyListener
 	public Thread thread;
 	public Player player;
 	public Map map;
-	public Game(){  //constructor
+	public Gameplay(){  //constructor
 		Dimension dimension = new Dimension(Game.width,Game.height);
 		setPreferredSize(dimension);
 		setMinimumSize(dimension);
@@ -26,4 +26,28 @@ public class Gameplay extends Canvas implements Runnable,KeyListener
 		addKeyListener(this);
 		map = new Map();
 	}
-	
+	private void update(){ //update the graphics
+		BufferStrategy bs = getBufferStrategy();
+		if (bs == null){
+			createBufferStrategy(3);
+			return;
+		}
+		Graphics g = bs.getDrawGraphics();
+		g.setColor(Color.black);
+		g.fillRect(0, 0, Game.width,Game.height);
+		map.update(g);
+		g.dispose();
+		bs.show();
+	}
+
+	private void move(){     //movement of components
+	}
+
+	public synchronized void start(){
+		if(isRunning) return;
+		isRunning = true;
+		thread = new Thread(this);
+		thread.start();
+	}
+
+}
