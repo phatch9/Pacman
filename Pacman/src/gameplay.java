@@ -19,7 +19,7 @@ public class Gameplay extends Canvas implements Runnable,KeyListener
 	public Player player;
 	public Map map;
 	public Gameplay(){  //constructor
-		Dimension dimension = new Dimension(Game.width,Game.height);
+		Dimension dimension = new Dimension(Gameplay.width,Gameplay.height);
 		setPreferredSize(dimension);
 		setMinimumSize(dimension);
 		setMaximumSize(dimension);
@@ -50,4 +50,28 @@ public class Gameplay extends Canvas implements Runnable,KeyListener
 		thread.start();
 	}
 
+	public synchronized void stop()
+	{
+		if(!isRunning) return;
+		isRunning = false
+		try {
+			thread.join() 
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+	}
+	@override
+	public void run() {
+		int fps = 0  
+		double timer = System.currentTimeMillis();
+		long lastTime = System.nanoTime();
+		double target = 60.0;
+		double delta = 0;
+		double ns = 1000000000/target;
+
+		while (isRunning) {
+			long now = System 
+		}
+	}
 }
+
